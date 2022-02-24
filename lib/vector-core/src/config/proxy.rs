@@ -188,7 +188,7 @@ mod tests {
         let result = first.merge(&second).merge(&third);
         assert_eq!(result.http, Some("http://1.2.3.4:5678".into()));
         assert_eq!(result.https, Some("https://2.3.4.5:9876".into()));
-        assert!(result.no_proxy.matches(&"localhost".to_string()));
+        assert!(result.no_proxy.matches("localhost"));
     }
 
     #[test]
@@ -207,8 +207,8 @@ mod tests {
         let result = first.merge(&second);
         assert_eq!(result.http, Some("http://1.2.3.4:5678".into()));
         assert_eq!(result.https, Some("https://2.3.4.5:9876".into()));
-        assert!(!result.no_proxy.matches(&"127.0.0.1".to_string()));
-        assert!(result.no_proxy.matches(&"localhost".to_string()));
+        assert!(!result.no_proxy.matches("127.0.0.1"));
+        assert!(result.no_proxy.matches("localhost"));
     }
 
     #[test]
